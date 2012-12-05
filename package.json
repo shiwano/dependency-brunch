@@ -1,0 +1,43 @@
+{
+  "name": "dependency-brunch",
+  "description": "Add the dependOn option to the brunch config file.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/shiwano/dependency-brunch",
+  "author": {
+    "name": "Shogo Iwano",
+    "email": "shiwano@gmail.com",
+    "url": "http://shiwano.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shiwano/dependency-brunch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shiwano/dependency-brunch/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shiwano/dependency-brunch/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "underscore": "~1.4.3"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0a",
+    "grunt-contrib-coffee": "~0.3.2",
+    "grunt-contrib-watch": "~0.1.4",
+    "grunt-simple-mocha": "~0.2.0",
+    "mocha": "~1.7.3",
+    "chai": "~1.4.0"
+  },
+  "keywords": []
+}
