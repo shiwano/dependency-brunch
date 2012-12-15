@@ -1,32 +1,37 @@
 _ = require 'underscore'
+fs = require 'fs'
+sinon = require 'sinon'
 
 module.exports = class DependencyCompiler
   brunchPlugin: yes
   type: 'javascript'
-  pattern: /.*/
+  pattern: /^.*$/
 
   constructor: (@config) ->
-    null
+    @dependencyConfig = {}
 
-  getDependencies: (data, path, callback) ->
-    dependencies = []
+    for fileType in ['javascripts', 'stylesheets', 'templates']
+      if @config.files[fileType]?.dependOn
+        _.extend @dependencyConfig, @config.files[fileType].dependOn
 
-    for dependency, filePatterns of @extractConfig()
+  lint: (data, path, callback) ->
+    try
+      @_lint data, path, callback
+    catch err
+      error = err.stack
+    finally
+      callback error
+
+  _lint: (data, path, callback) ->
+    for dependencyPath, filePatterns of @dependencyConfig
       filePatterns = [filePatterns] unless _.isArray filePatterns
 
       for filePattern in filePatterns
         if _.isRegExp(filePattern) and path.match(filePattern)
-          dependencies.push dependency
+          @updateTimeStampOf dependencyPath
         else if _.isString(filePattern) and path is filePattern
-          dependencies.push dependency
+          @updateTimeStampOf dependencyPath
 
-    callback null, dependencies
-
-  extractConfig: ->
-    config = {}
-
-    for fileType in ['javascripts', 'stylesheets', 'templates']
-      if @config.files[fileType]?.dependOn
-        config = _.extend config, @config.files[fileType].dependOn
-
-    config
+  updateTimeStampOf: (path) ->
+    data = fs.readFileSync path, 'utf-8'
+    fs.writeFileSync path, data

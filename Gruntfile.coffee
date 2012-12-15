@@ -11,7 +11,7 @@ module.exports = (grunt) ->
       lib:
         src: 'test/**/*_test.coffee'
         options:
-          globals: ['expect']
+          globals: ['expect', 'sinon']
           timeout: 3000
           ui: 'bdd'
           reporter: 'nyan'

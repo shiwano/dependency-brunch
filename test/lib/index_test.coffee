@@ -1,4 +1,5 @@
 spec = require '../spec_helper'
+fs = require 'fs'
 
 Plugin = spec.require 'index'
 
@@ -21,28 +22,41 @@ describe 'Plugin', ->
             ]
     plugin = new Plugin(config)
 
-  describe '#getDependencies', ->
-    it 'should return dependencies which matched a specified string', (done) ->
-      plugin.getDependencies null, 'nyan.txt', (error, dependencies) ->
-        expect(dependencies).to.be.eql(['string.js'])
-        done()
-
-    it 'should return dependencies which matched a specified RegExp', (done) ->
-      plugin.getDependencies null, 'test/nyancat/nyan.txt', (error, dependencies) ->
-        expect(dependencies).to.be.eql(['regexp.css'])
-        done()
-
-    it 'should return dependencies which matched a specified Array', (done) ->
-      plugin.getDependencies null, 'test/wandog/wan.txt', (error, dependencies) ->
-        expect(dependencies).to.be.eql(['array.html'])
-        done()
-
-  describe '#extractConfig', ->
-    it 'should return the config which was extracted from the brunch config', ->
-      config = plugin.extractConfig()
-      expect(config).to.be.eql
+  describe '#constructor', ->
+    it 'should set config which was extracted from brunch config', ->
+      expect(plugin.dependencyConfig).to.be.eql
         'string.js': 'nyan.txt'
         'regexp.css': /^test(\/|\\)nyancat/
         'array.html': [
           /^test(\/|\\)wandog/
         ]
+
+  describe '#lint', ->
+    beforeEach ->
+      sinon.stub plugin, 'updateTimeStampOf'
+
+    it 'should call #updateTimeStampOf when taken path matched specified String', (done) ->
+      plugin.lint null, 'nyan.txt', (error) ->
+        expect(plugin.updateTimeStampOf.calledOnce).to.be.true
+        expect(plugin.updateTimeStampOf.args[0]).to.be.eql ['string.js']
+        done()
+
+    it 'should call #updateTimeStampOf when taken path matched specified RegExp', (done) ->
+      plugin.lint null, 'test/nyancat/nyan.txt', (error) ->
+        expect(plugin.updateTimeStampOf.calledOnce).to.be.true
+        expect(plugin.updateTimeStampOf.args[0]).to.be.eql ['regexp.css']
+        done()
+
+    it 'should call #updateTimeStampOf when taken path matched specified Array', (done) ->
+      plugin.lint null, 'test/wandog/wan.txt', (error) ->
+        expect(plugin.updateTimeStampOf.calledOnce).to.be.true
+        expect(plugin.updateTimeStampOf.args[0]).to.be.eql ['array.html']
+        done()
+
+  describe '#updateTimeStampOf', ->
+    it 'update time stamp of specified file', ->
+      targetPath = 'test/fixtures/nyan.txt'
+      beforeMTime = fs.statSync(targetPath).mtime
+      plugin.updateTimeStampOf targetPath
+      afterMTime = fs.statSync(targetPath).mtime
+      expect(beforeMTime isnt afterMTime).to.be.true
