@@ -1,6 +1,6 @@
 {
   "name": "dependency-brunch",
-  "description": "Add the dependOn option to the brunch config file.",
+  "description": "Adds dependOn option to brunch config.",
   "version": "0.1.0",
   "homepage": "https://github.com/shiwano/dependency-brunch",
   "author": {
