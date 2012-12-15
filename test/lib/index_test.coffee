@@ -1,7 +1,7 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 fs = require 'fs'
 
-Plugin = spec.require 'index'
+Plugin = helper.require 'index'
 
 describe 'Plugin', ->
   config = plugin = null

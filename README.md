@@ -34,7 +34,7 @@ exports.config =
   files:
     stylesheets:
       dependOn:
-        'app/styl/foo.styl': 'app/styli/bar.styl'
+        'app/styli/foo.styl': 'app/styli/bar.styl'
 ```
 
 ```coffescript

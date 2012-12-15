@@ -1,6 +1,5 @@
 _ = require 'underscore'
 fs = require 'fs'
-sinon = require 'sinon'
 
 module.exports = class DependencyCompiler
   brunchPlugin: yes
