@@ -1,27 +1,56 @@
 # dependency-brunch
+Adds `dependOn` option to
+[brunch](http://brunch.io) config.
 
-Add the dependencies option to the brunch config file.
+## Install
+Add `"dependency-brunch": "x.y.z"` to `package.json` of your brunch app.
 
-## Getting Started
-Install the module with: `npm install dependency-brunch`
+Pick a plugin version that corresponds to your minor (y) brunch version.
 
-```javascript
-var dependency_brunch = require('dependency-brunch');
-dependency_brunch.awesome(); // "awesome"
+If you want to use git version of plugin, add
+`"dependency-brunch": "git+ssh://git@github.com:shiwano/dependency-brunch.git"`.
+
+## Usage
+You can use `dependOn` option in `config.coffee`. Example:
+
+```coffescript
+exports.config =
+  files:
+    javascripts:
+      dependOn:
+        'app/config.coffeeenv': [
+          /^app(\/|\\)controllers/
+          /^app(\/|\\)views/
+          /^app(\/|\\)models/
+        ]
 ```
 
-## Documentation
-_(Coming soon)_
+Now, when `app/controllers/home.coffee` changed, brunch compile `app/config.coffeeenv` too.
 
-## Examples
-_(Coming soon)_
+More Examples:
+
+```coffescript
+exports.config =
+  files:
+    stylesheets:
+      dependOn:
+        'app/styl/foo.styl': 'app/styli/bar.styl'
+```
+
+```coffescript
+exports.config =
+  files:
+    templates:
+      dependOn:
+        'app/templates/foo.hbs': /^app(\/|\\)templates/
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
-_(Nothing yet)_
+ * 2012-12-16   v0.1.0   First release.
 
 ## License
-Copyright (c) 2012 Shogo Iwano  
+Copyright (c) 2012 Shogo Iwano
 Licensed under the MIT license.
