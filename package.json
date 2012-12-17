@@ -33,10 +33,10 @@
     "sinon": "~1.5.2"
   },
   "devDependencies": {
-    "grunt": "~0.4.0a",
+    "grunt": "~0.4.0rc3",
     "grunt-contrib-coffee": "~0.3.2",
     "grunt-contrib-watch": "~0.1.4",
-    "grunt-simple-mocha": "~0.2.0",
+    "grunt-simple-mocha": "~0.3.1",
     "mocha": "~1.7.3",
     "chai": "~1.4.0"
   },
