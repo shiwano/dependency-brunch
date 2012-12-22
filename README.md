@@ -2,7 +2,7 @@
 Adds `dependOn` option to
 [brunch](http://brunch.io) config.
 
-## Install
+## Installation
 Add `"dependency-brunch": "x.y.z"` to `package.json` of your brunch app.
 
 Pick a plugin version that corresponds to your minor (y) brunch version.
