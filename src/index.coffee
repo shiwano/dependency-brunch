@@ -1,4 +1,4 @@
-_ = require 'underscore'
+_ = require 'lodash'
 fs = require 'fs'
 
 module.exports = class DependencyCompiler

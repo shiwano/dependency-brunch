@@ -29,8 +29,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "underscore": "~1.4.3",
-    "sinon": "~1.5.2"
+    "lodash": "~1.0.0-rc.3"
   },
   "devDependencies": {
     "grunt": "~0.4.0rc3",
@@ -38,7 +37,8 @@
     "grunt-contrib-coffee": "~0.4.0rc5",
     "grunt-simple-mocha": "~0.3.1",
     "mocha": "~1.7.3",
-    "chai": "~1.4.0"
+    "chai": "~1.4.0",
+    "sinon": "~1.5.2"
   },
   "keywords": []
 }
