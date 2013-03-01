@@ -49,6 +49,7 @@ exports.config =
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
+ * 2013-03-02   v0.1.2   Use [touch](https://github.com/isaacs/node-touch)
  * 2013-02-09   v0.1.1   Replace underscore with lodash
  * 2012-12-16   v0.1.0   First release.
 
