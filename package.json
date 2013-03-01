@@ -29,7 +29,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "lodash": "~1.0.0-rc.3"
+    "lodash": "~1.0.0-rc.3",
+    "touch": "0.0.2"
   },
   "devDependencies": {
     "grunt": "~0.4.0rc3",
