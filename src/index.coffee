@@ -1,5 +1,6 @@
 _ = require 'lodash'
 fs = require 'fs'
+touch = require 'touch'
 
 module.exports = class DependencyCompiler
   brunchPlugin: yes
@@ -32,5 +33,4 @@ module.exports = class DependencyCompiler
           @updateTimeStampOf dependencyPath
 
   updateTimeStampOf: (path) ->
-    data = fs.readFileSync path, 'utf-8'
-    fs.writeFileSync path, data
+    touch.sync path
